@@ -43,9 +43,14 @@ public class App extends SimpleWebServer {
             } else if (uri.equals("/api/play")) {
                 // e.g., /play?x=1&y=1
                 this.game = this.game.play(Integer.parseInt(params.get("x")), Integer.parseInt(params.get("y")));
+            } else if (uri.equals("/api/undoMove")) {
+        
+                 this.game = this.game.undoMove();
             }
             // Extract the view-specific data from the game and apply it to the template.
+       
             GameState gameplay = GameState.forGame(this.game);
+            System.out.println(gameplay.toString());
             return newFixedLengthResponse(gameplay.toString());
         } else {
             return super.serve(session);
