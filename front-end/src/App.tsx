@@ -47,6 +47,11 @@ class App extends React.Component<Props, GameState> {
     const json = await response.json();
     this.setState({ cells: json['cells'] });
   }
+    undoGame = async () => {
+    const response = await fetch('/undoMove');
+    const json = await response.json();
+    this.setState({ cells: json['cells'] });
+  }
 
   /**
    * play will generate an anonymous function that the component
